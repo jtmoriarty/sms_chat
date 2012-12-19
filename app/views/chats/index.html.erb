@@ -1,0 +1,5 @@
+<h1>Pick User</h1>
+<%= form_tag '' do %>
+  <%= collection_select(:user, :user, @users, :user, :user) %>
+  <%= submit_tag 'Go' %>
+<% end %>
