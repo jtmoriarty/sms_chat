@@ -13,3 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$(function () {
+  if ($('#ajax-div').length > 0) {
+    setTimeout(updateComments, 600);
+  }
+  $('#ajax-div').scrollTop($("#ajax-div")[0].scrollHeight);
+});
+
+function updateComments() {
+	$('#ajax-div').load('chat_show_box', function(){
+		$('#ajax-div').scrollTop($("#ajax-div")[0].scrollHeight);
+	});
+  	setTimeout(updateComments, 600);
+}
+
+function cleartxtbox(){
+	document.getElementById('chat_message').value = '';
+}

@@ -1,5 +1,7 @@
 SmsChat::Application.routes.draw do
   root :to => 'chats#index'
+  match 'chat_show_box' => 'chats#_chat_show_box'
+  match '/' => "chats#index", :as => :home
   resources :users
 
 

@@ -20,6 +20,14 @@ class ChatsController < ApplicationController
     end
   end
 
+  def _chat_show_box
+    @chats = Chat.new
+    @chat = Chat.new
+    @chats = Chat.all
+
+    render :partial => 'chat_show_box'
+  end
+
   # GET /chats/1
   # GET /chats/1.json
   def show

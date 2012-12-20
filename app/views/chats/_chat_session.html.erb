@@ -1,28 +1,23 @@
 <head>
-  <title>SmsChat</title>
+  <title>Rails SMS Chat V 1.0</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 
-<h1>Chat</h1>
-
-<div id="ajax-div">
-	<table>
-		<% @chats.each do |chat_msg| %>
-			<tr>
-				<td><%= chat_msg.user %>: </td>
-				<td><%= chat_msg.message %></td>
-				<td><%= link_to 'Destroy', chat_msg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-			</tr>
+<h1>Rails SMS Chat V 1.0</h1>
+<h2>Logged in as: <%= params[:user][:user] %></h2>
+<%= link_to '<< Back to users', home_path %>
+<div class="chat-form-wrapper">
+	<div id="ajax-div">
+		<%= render :partial => 'chat_show_box' %>
+	</div>
+	<div class="message-box-wrapper">
+		<%= form_for @chat, :remote => true, :onsubmit => "return cleartxtbox();" do |f| %>
+			<%= f.text_field :message %>
+			<%#= f.text_field :user, :value => params[:user][:user] %>
+			<%= f.hidden_field :user, :value => params[:user][:user] %>
+			<%= f.submit 'Send', :id => 'send_btn' %>
 		<% end %>
-	</table>
+	</div>
 </div>
-
-
-<%= form_for @chat, :remote => true do |f| %>
-	<%= f.text_field :message %>
-	<%= f.text_field :user, :value => params[:user][:user] %>
-	<%#= hidden_field_tag 'user', :user %>
-	<%= f.submit 'Send', :remote => true %>
-<% end %>

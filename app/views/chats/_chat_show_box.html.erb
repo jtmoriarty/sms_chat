@@ -1,7 +1,10 @@
 <table>
-	<% @chats.each do |chat| %>
-		<tr>
-			<td><%= chat.message %></td>
-		</tr>
-	<% end %>
-</table>
+		<% @chats.each do |chat_msg| %>
+			<tr class="chat-row">
+				<td class="user-name"><%= chat_msg.user %>: </td>
+				<br />
+				<td><%= chat_msg.message %></td>
+				<td><%#= link_to 'Destroy', chat_msg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		<% end %>
+	</table>
